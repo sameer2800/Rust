@@ -28,8 +28,42 @@ fn main() {
         i = i+1;     
         
     }
+    
+    let mut numbers3 = String::new();
+    io::stdin().read_line(&mut numbers3).ok().expect("read error");
+    
         
+   //  for num in edges {
         
+        	
+            
+            let numbers3: Vec<i32> = numbers3
+            .split_whitespace()
+            .map(|s| s.parse().unwrap())
+            .collect();
+            
+            let mut j =0 ;
+            let mut start = 0;
+            let mut end = 0;
+            let mut value = 0;
+            
+            for num2 in numbers3 {
+                if j == 0 {
+                    start = num2;
+                }
+                if j == 1 {
+                    end = num2;
+                }if j == 2 {
+                    value = num2;
+                }
+                j = j + 1;
+           
+           
+            }
+            
+        println!("{} {} {}",start,end,value);
+        
+   //  }
     
         
         
