@@ -31,7 +31,7 @@ impl PartialOrd for que_node {
 
 const  INF: u32 = 999999999;
 
-fn Johnson(start:u32, nodes: u32, edges: u32, adj_matrix: Vec<Vec<u32>> )   {
+fn Johnson(start:u32, nodes: u32, edges: u32, adj_matrix: &Vec<Vec<u32>> )   {
         
     let mut distance = Vec::new();  
     
@@ -55,9 +55,11 @@ fn Johnson(start:u32, nodes: u32, edges: u32, adj_matrix: Vec<Vec<u32>> )   {
 
         for i in 0..nodes {
         
-            if(i != vertex){
+            let mut weigh =  adj_matrix[vertex as usize][i as usize];    
         
-                let mut weigh =  adj_matrix[vertex as usize][i as usize];    
+            if(i != vertex && weigh != 0 ){
+        
+                
                  let next = que_node { cost: cost + weigh, vertex: i };
                  
                  if next.cost < distance[next.vertex as usize] {
@@ -82,7 +84,13 @@ fn Johnson(start:u32, nodes: u32, edges: u32, adj_matrix: Vec<Vec<u32>> )   {
     */
 
      }
+     
+     println!("when Start is {}" , start);
+     for i in 0..nodes {
+         print!("{} ", distance[i as usize]);
+     }
     
+    println!("");
 }
 
 
@@ -149,7 +157,9 @@ fn main() {
     println!("Debugging at level 2  :{} ", adj_list[0][0]);
     
     
-    
+    for i in 0..nodes {
+        Johnson(i as u32,nodes as u32,edges as u32 ,&adj_list);
+    }
      
 }    
     
